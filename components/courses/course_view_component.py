@@ -1,9 +1,11 @@
+from pip._internal.models import index
+
 from components.base_component import BaseComponent
 from playwright.sync_api import Page, expect
 from components.courses.course_view_menu_component import CourseViewMenuComponent
 from elements.text import Text
 from elements.image import Image
-
+import allure
 
 
 class CourseViewComponent(BaseComponent):
@@ -16,6 +18,7 @@ class CourseViewComponent(BaseComponent):
         self.estimated_time = Text(page,'course-estimated-time-info-row-view-text', 'Time')
         self.menu = CourseViewMenuComponent(page)
 
+    @allure.step('Check visible course view at index "{index}"')
     def check_visible(self,
                         index: int,  # индекс карточки на странице
                         title: str,
